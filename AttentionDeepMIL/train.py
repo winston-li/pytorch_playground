@@ -39,6 +39,8 @@ class AverageMeter():
 def run(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    n_worker = 2
+    n_epoch = args.epochs
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed(args.seed)        # backward pass
     print('Load Train and Test Set')
@@ -77,7 +79,7 @@ def run(args):
     else:
         print('Grand new training ...')
         start_epoch = 0
-        model = Attention2()
+        model = Attention()
 
     # put model to multiple GPUs if available
     if torch.cuda.device_count() > 1:
